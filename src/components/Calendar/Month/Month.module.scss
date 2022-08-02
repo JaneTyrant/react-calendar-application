@@ -1,0 +1,12 @@
+@import '../../../common/style/colors';
+
+span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+
+.current-day {
+  background-color: red;
+}
