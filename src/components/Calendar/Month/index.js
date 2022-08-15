@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { add, format, sub } from "date-fns";
+import cx from "classnames";
 import styles from "./Month.module.scss";
 import MonthList from "../MonthList";
 import MonthWeeks from "../MonthWeeks/MonthWeeks.js";
@@ -13,6 +14,8 @@ const TitleWeek = () => {
     </span>
   ));
 };
+
+const yearClasses = cx(styles["month-year"], styles.year);
 
 class Month extends Component {
   constructor(props) {
@@ -52,7 +55,7 @@ class Month extends Component {
             <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, !addToDate)}>&#94;</button>
             <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, addToDate)}>&#94;</button>
             <div>
-              <p className={styles["month-year"]} >{format(currentDate, "yyyy")}</p>
+              <p className={yearClasses} >{format(currentDate, "yyyy")}</p>
               <button
                 className={styles["month-button"]}
                 onClick={() => this.changeDate({ months: 1 }, !addToDate)}

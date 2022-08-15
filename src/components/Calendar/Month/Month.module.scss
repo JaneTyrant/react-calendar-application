@@ -36,12 +36,12 @@
   display: inline-block;
 
   @extend %date;
+}
 
-  & + .month-year:hover {
-    color: inherit;
+.year:hover {
+  color: inherit;
 
-    cursor: initial;
-  }
+  cursor: initial;
 }
 
 .title-week {
