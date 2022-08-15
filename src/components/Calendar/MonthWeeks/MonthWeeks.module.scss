@@ -1,0 +1,48 @@
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/breakpoints" as *;
+@import "../../../common/style/template";
+
+.month-day {
+  @extend %day-cell;
+
+  &:hover::after {
+    @extend %day-style;
+
+    border: 3px solid $month-color;
+  }
+}
+
+.month-day,
+.current-day {
+  position: relative;
+}
+
+.current-day {
+  color: $current;
+
+  &::after,
+  &:hover::after {
+    @extend %day-style;
+
+    border: 3px solid $current;
+  }
+}
+
+.empty-day {
+  color: transparent;
+
+  user-select: none;
+
+  @extend %day-cell;
+}
+
+@media screen and (min-width: $xl) {
+  .month-day:hover::after {
+    border: 5px solid $month-color;
+  }
+
+  .current-day::after,
+  .current-day:hover::after {
+    border: 5px solid $current;
+  }
+}
