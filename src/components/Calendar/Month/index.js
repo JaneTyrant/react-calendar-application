@@ -1,103 +1,94 @@
-import React from "react";
-import {
-  add,
-  format,
-  sub,
-  eachDayOfInterval,
-  lastDayOfMonth,
-  getDay,
-} from "date-fns";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { add, format, sub } from "date-fns";
 import styles from "./Month.module.scss";
+import MonthList from "../MonthList";
+import MonthWeeks from "../MonthWeeks/MonthWeeks.js";
 
 const TitleWeek = () => {
   const titles = ["S", "M", "T", "W", "T", "F", "S"];
-  return titles.map((t, i) => <span key={i}>{t}</span>);
+  return titles.map((t, i) => (
+    <span className={styles["title-week"]} key={i}>
+      {t}
+    </span>
+  ));
 };
 
-const Month = (props) => {
-  const { currentDate, setDate } = props;
-  const addToDate = (duration) => {
-    const newDate = add(currentDate, duration);
+class Month extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMonthList: false,
+      addToDate: true,
+    };
+  }
+  changeDate = (duration, addToDate) => {
+    const { currentDate, setDate } = this.props;
+    const newDate = addToDate
+      ? sub(currentDate, duration)
+      : add(currentDate, duration);
     setDate(newDate);
   };
-  const subfromDate = (duration) => {
-    const newDate = sub(currentDate, duration);
-    setDate(newDate);
-  };
-  const firstDayOfMonth = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth(),
-    1
-  );
-  const firstDayOfMonth2 = getDay(firstDayOfMonth);
-
-  const emptyDays = () => {
-    const array = [];
-    for (let i = 0; i < firstDayOfMonth2; i++) {
-      array.push(<span key={"empty" + i}>0</span>);
-    }
-    return array;
-  };
-
-  const monthDays = () => {
-    return eachDayOfInterval({
-      start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
-      end: lastDayOfMonth(currentDate),
-    }).map((date, i) => {
-      if (format(date, "d") === format(currentDate, "d")) {
-        return (
-          <span key={i} className={styles["current-day"]}>
-            {format(date, "d")}
-          </span>
-        );
-      } else {
-        return <span key={i}>{format(date, "d")}</span>;
-      }
+  showMonthList = () => {
+    const { showMonthList } = this.state;
+    this.setState({
+      showMonthList: !showMonthList,
     });
   };
+  render() {
+    const { currentDate, setDate } = this.props;
+    const { showMonthList, addToDate } = this.state;
+    return (
+      <>
+        <article className={styles["month-article"]}>
+          <div className={styles["date-wrapper"]}>
+            <button
+              className={styles["month-button"]}
+              onClick={() => this.changeDate({ months: 1 }, addToDate)}
+            >
+              &#60;
+            </button>
+            <p className={styles["month-year"]} onClick={this.showMonthList}>{format(currentDate, "LLLL")}</p>
+            <p className={styles["month-year"]} >{format(currentDate, "yyyy")}</p>
+            <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, !addToDate)}>&#94;</button>
+            <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, addToDate)}>&#94;</button>
+            <button
+              className={styles["month-button"]}
+              onClick={() => this.changeDate({ months: 1 }, !addToDate)}
+            >
+              &#62;
+            </button>
+          </div>
+          <article className={styles["month-days-article"]}>
+            {showMonthList && (
+              <MonthList
+                currentDate={currentDate}
+                setDate={setDate}
+                showMonthList={this.showMonthList}
+              />
+            )}
+            {!showMonthList && (
+              <>
+                <div>
+                  <TitleWeek />
+                </div>
+                <MonthWeeks currentDate={currentDate} />
+              </>
+            )}
+          </article>
+        </article>
+      </>
+    );
+  }
+}
 
-  const monthDaysEmptyDays = [];
-  monthDaysEmptyDays.push(...emptyDays());
-  monthDaysEmptyDays.push(...monthDays());
+Month.defaultProps = {
+  currentDate: new Date(),
+};
 
-  let arrayWeeks = [];
-  let arrayOneWeek = [];
-
-  monthDaysEmptyDays.forEach((day, i) => {
-    if (i % 7 !== 0) {
-      arrayOneWeek.push(day);
-    } else {
-      arrayWeeks.push(arrayOneWeek);
-      arrayOneWeek = [];
-      arrayOneWeek.push(day);
-    }
-    if (i === monthDaysEmptyDays.length - 1) {
-      arrayWeeks.push(arrayOneWeek);
-    }
-  });
-
-  const MonthWeeks = arrayWeeks.map((d, i) => {
-    return <div key={"div" + i}>{d}</div>;
-  });
-  return (
-    <>
-      <section>
-        <p>
-          <button onClick={() => subfromDate({ months: 1 })}>
-            Substract 1 month
-          </button>
-          <button onClick={() => addToDate({ months: 1 })}>Add 1 month</button>
-        </p>
-        <div>
-          <p>{format(currentDate, "LLLL yyyy")}</p>
-        </div>
-        <div>
-          <TitleWeek />
-        </div>
-        <article>{MonthWeeks}</article>
-      </section>
-    </>
-  );
+Month.propTypes = {
+  currentDate: PropTypes.object.isRequired,
+  setDate: PropTypes.func,
 };
 
 export default Month;
