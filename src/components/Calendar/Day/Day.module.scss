@@ -10,8 +10,6 @@
 
   text-align: center;
 
-  @extend %article-height;
-
   @media screen and (min-width: $lg) {
     width: 50%;
     box-sizing: content-box;

@@ -38,7 +38,7 @@ const MonthWeeks = (props) => {
     }).map((date, i) => {
       if (
         format(date, "d") === format(currentDate, "d") &&
-        currentDate === thisDate
+        currentDate.toString() === thisDate.toString()
       ) {
         return (
           <span key={i} className={currentDayClasses}>

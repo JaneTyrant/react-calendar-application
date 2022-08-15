@@ -5,9 +5,9 @@
 .month-article {
   color: $month-color;
 
-  font-weight: 600;
+  height: 240px;
 
-  @extend %article-height;
+  font-weight: 600;
 }
 
 .month-article,
@@ -68,6 +68,8 @@
 
 @media screen and (min-width: $sm) {
   .month-article {
+    height: 274px;
+
     margin-top: 1rem;
   }
 
@@ -77,6 +79,10 @@
 }
 
 @media screen and (min-width: $md) {
+  .month-article {
+    height: 309px;
+  }
+
   .year-button {
     right: 46px;
     & + .year-button {
@@ -87,6 +93,7 @@
 
 @media screen and (min-width: $lg) {
   .month-article {
+    height: 344px;
     margin-top: 1.5rem;
     padding-top: 0.5rem;
   }
@@ -99,6 +106,10 @@
 }
 
 @media screen and (min-width: $xl) {
+  .month-article {
+    height: 446px;
+  }
+
   .year-button {
     top: 2px;
     right: 65px;
