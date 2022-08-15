@@ -1,0 +1,44 @@
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/_breakpoints" as *;
+@import "../../../common/style/template";
+
+.article {
+  width: 100%;
+
+  background-color: $secondary-color;
+  color: #ffffff;
+
+  text-align: center;
+
+  @extend %article-height;
+
+  @media screen and (min-width: $lg) {
+    width: 50%;
+    box-sizing: content-box;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .week-day {
+    text-transform: uppercase;
+    font-weight: 100;
+  }
+
+  .month-day {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 0;
+
+    @media screen and (min-width: $sm) {
+      font-size: 8rem;
+    }
+
+    @media screen and (min-width: $lg) {
+      margin: 7rem 0;
+    }
+
+    @media screen and (min-width: $xl) {
+      font-size: 10rem;
+    }
+  }
+}
