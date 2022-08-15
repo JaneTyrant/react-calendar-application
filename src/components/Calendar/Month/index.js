@@ -5,6 +5,7 @@ import cx from "classnames";
 import styles from "./Month.module.scss";
 import MonthList from "../MonthList";
 import MonthWeeks from "../MonthWeeks/MonthWeeks.js";
+import Button from "../Button";
 
 const TitleWeek = () => {
   const titles = ["S", "M", "T", "W", "T", "F", "S"];
@@ -22,16 +23,8 @@ class Month extends Component {
     super(props);
     this.state = {
       showMonthList: false,
-      addToDate: true,
     };
   }
-  changeDate = (duration, addToDate) => {
-    const { currentDate, setDate } = this.props;
-    const newDate = addToDate
-      ? sub(currentDate, duration)
-      : add(currentDate, duration);
-    setDate(newDate);
-  };
   showMonthList = () => {
     const { showMonthList } = this.state;
     this.setState({
@@ -40,28 +33,19 @@ class Month extends Component {
   };
   render() {
     const { currentDate, setDate } = this.props;
-    const { showMonthList, addToDate } = this.state;
+    const { showMonthList } = this.state;
     return (
       <>
         <article className={styles["month-article"]}>
           <div className={styles["date-wrapper"]}>
-            <button
-              className={styles["month-button"]}
-              onClick={() => this.changeDate({ months: 1 }, addToDate)}
-            >
-              &#60;
-            </button>
+            <Button value="months" arrow="&#60;" buttonClass="month-button" addToDate={true} currentDate={currentDate} setDate={setDate} />
+            
             <p className={styles["month-year"]} onClick={this.showMonthList}>{format(currentDate, "LLLL")}</p>
-            <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, !addToDate)}>&#94;</button>
-            <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, addToDate)}>&#94;</button>
+            <Button value="years" arrow="&#94;" buttonClass="year-button" addToDate={false} currentDate={currentDate} setDate={setDate} />
+            <Button value="years" arrow="&#94;" buttonClass="year-button" addToDate={true} currentDate={currentDate} setDate={setDate} />
             <div>
               <p className={yearClasses} >{format(currentDate, "yyyy")}</p>
-              <button
-                className={styles["month-button"]}
-                onClick={() => this.changeDate({ months: 1 }, !addToDate)}
-              >
-                &#62;
-              </button>
+              <Button value="months" arrow="&#62;" buttonClass="month-button" addToDate={false} currentDate={currentDate} setDate={setDate} />
             </div>
           </div>
           <article className={styles["month-days-article"]}>

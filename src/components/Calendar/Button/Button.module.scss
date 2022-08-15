@@ -1,0 +1,51 @@
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/breakpoints" as *;
+@import "../../../common/style/template";
+
+.month-button {
+  @extend %button;
+
+  @extend %date;
+}
+
+.year-button {
+  position: absolute;
+  top: 2px;
+  right: 37px;
+
+  @extend %button;
+
+  @extend %date;
+
+  & + .year-button {
+    top: 27px;
+
+    transform: rotate(0.5turn);
+  }
+
+  @media screen and (min-width: $sm) {
+    right: 42px;
+  }
+
+  @media screen and (min-width: $md) {
+    right: 46px;
+    & + .year-button {
+      top: 33px;
+    }
+  }
+
+  @media screen and (min-width: $lg) {
+    & + .year-button {
+      top: 41px;
+    }
+  }
+
+  @media screen and (min-width: $xl) {
+    top: 2px;
+    right: 65px;
+
+    & + .year-button {
+      top: 48px;
+    }
+  }
+}

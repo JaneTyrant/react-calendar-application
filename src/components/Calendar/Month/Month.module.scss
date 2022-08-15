@@ -8,6 +8,26 @@
   height: 240px;
 
   font-weight: 600;
+
+  @media screen and (min-width: $sm) {
+    height: 274px;
+
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: $md) {
+    height: 309px;
+  }
+
+  @media screen and (min-width: $lg) {
+    height: 344px;
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  @media screen and (min-width: $xl) {
+    height: 446px;
+  }
 }
 
 .month-article,
@@ -26,12 +46,6 @@
   text-transform: uppercase;
 }
 
-.month-button {
-  @extend %button;
-
-  @extend %date;
-}
-
 .month-year {
   display: inline-block;
 
@@ -48,74 +62,4 @@
   color: $current;
 
   @extend %day-cell;
-}
-
-.year-button {
-  position: absolute;
-  top: 2px;
-  right: 37px;
-
-  @extend %button;
-
-  @extend %date;
-
-  & + .year-button {
-    top: 27px;
-
-    transform: rotate(0.5turn);
-  }
-}
-
-@media screen and (min-width: $sm) {
-  .month-article {
-    height: 274px;
-
-    margin-top: 1rem;
-  }
-
-  .year-button {
-    right: 42px;
-  }
-}
-
-@media screen and (min-width: $md) {
-  .month-article {
-    height: 309px;
-  }
-
-  .year-button {
-    right: 46px;
-    & + .year-button {
-      top: 33px;
-    }
-  }
-}
-
-@media screen and (min-width: $lg) {
-  .month-article {
-    height: 344px;
-    margin-top: 1.5rem;
-    padding-top: 0.5rem;
-  }
-
-  .year-button {
-    & + .year-button {
-      top: 41px;
-    }
-  }
-}
-
-@media screen and (min-width: $xl) {
-  .month-article {
-    height: 446px;
-  }
-
-  .year-button {
-    top: 2px;
-    right: 65px;
-
-    & + .year-button {
-      top: 48px;
-    }
-  }
 }
