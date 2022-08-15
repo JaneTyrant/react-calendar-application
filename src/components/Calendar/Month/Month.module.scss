@@ -1,12 +1,110 @@
-@import '../../../common/style/colors';
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/breakpoints" as *;
+@import "../../../common/style/template";
 
-span {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
+.month-article {
+  color: $month-color;
+
+  font-weight: 600;
+
+  @extend %article-height;
 }
 
-.current-day {
-  background-color: red;
+.month-article,
+.month-days-article {
+  margin: auto;
+}
+
+.date-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  position: relative;
+
+  color: $accent-color;
+
+  text-transform: uppercase;
+}
+
+.month-button {
+  @extend %button;
+
+  @extend %date;
+}
+
+.month-year {
+  display: inline-block;
+
+  @extend %date;
+
+  & + .month-year:hover {
+    color: inherit;
+
+    cursor: initial;
+  }
+}
+
+.title-week {
+  color: $current;
+
+  @extend %day-cell;
+}
+
+.year-button {
+  position: absolute;
+  top: 2px;
+  right: 43px;
+
+  @extend %button;
+
+  @extend %date;
+
+  & + .year-button {
+    top: 27px;
+
+    transform: rotate(0.5turn);
+  }
+}
+
+@media screen and (min-width: $sm) {
+  .month-article {
+    margin-top: 1rem;
+  }
+
+  .year-button {
+    right: 49px;
+  }
+}
+
+@media screen and (min-width: $md) {
+  .year-button {
+    right: 53px;
+    & + .year-button {
+      top: 33px;
+    }
+  }
+}
+
+@media screen and (min-width: $lg) {
+  .month-article {
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .year-button {
+    & + .year-button {
+      top: 41px;
+    }
+  }
+}
+
+@media screen and (min-width: $xl) {
+  .year-button {
+    top: 2px;
+    right: 80px;
+
+    & + .year-button {
+      top: 48px;
+    }
+  }
 }
