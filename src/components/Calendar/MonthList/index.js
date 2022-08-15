@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { setMonth } from "date-fns";
 import styles from "./MonthList.module.scss";
 
@@ -58,6 +59,16 @@ const MonthList = (props) => {
   });
 
   return <article className={"month-list"}>{Monthlist}</article>;
+};
+
+MonthList.defaultProps = {
+  currentDate: new Date(),
+};
+
+MonthList.propTypes = {
+  currentDate: PropTypes.object.isRequired,
+  setDate: PropTypes.func,
+  showMonthList: PropTypes.func
 };
 
 export default MonthList;
