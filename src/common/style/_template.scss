@@ -1,0 +1,64 @@
+@use "./breakpoints" as *;
+@use "./colors" as *;
+
+%article-height {
+  @media screen and (min-width: $sm) {
+    height: 274px;
+  }
+
+  @media screen and (min-width: $md) {
+    height: 309px;
+  }
+
+  @media screen and (min-width: $lg) {
+    height: 344px;
+  }
+
+  @media screen and (min-width: $xl) {
+    height: 446px;
+  }
+}
+
+%day-cell {
+  display: inline-block;
+
+  width: 2rem;
+  height: 2rem;
+
+  text-align: center;
+}
+
+%date {
+  cursor: pointer;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+%button {
+  padding: 0 1rem;
+  border: none;
+
+  background-color: inherit;
+  color: inherit;
+
+  font-size: 1rem;
+}
+
+%day-style {
+  content: "";
+  
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  
+  position: absolute;
+  top: -7px;
+  left: 1px;
+
+  @media screen and (min-width: $xl) {
+    top: -11px;
+  }
+}
