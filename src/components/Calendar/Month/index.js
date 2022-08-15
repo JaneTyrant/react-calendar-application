@@ -49,15 +49,17 @@ class Month extends Component {
               &#60;
             </button>
             <p className={styles["month-year"]} onClick={this.showMonthList}>{format(currentDate, "LLLL")}</p>
-            <p className={styles["month-year"]} >{format(currentDate, "yyyy")}</p>
             <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, !addToDate)}>&#94;</button>
             <button className={styles["year-button"]} onClick={() => this.changeDate({ years: 1 }, addToDate)}>&#94;</button>
-            <button
-              className={styles["month-button"]}
-              onClick={() => this.changeDate({ months: 1 }, !addToDate)}
-            >
-              &#62;
-            </button>
+            <div>
+              <p className={styles["month-year"]} >{format(currentDate, "yyyy")}</p>
+              <button
+                className={styles["month-button"]}
+                onClick={() => this.changeDate({ months: 1 }, !addToDate)}
+              >
+                &#62;
+              </button>
+            </div>
           </div>
           <article className={styles["month-days-article"]}>
             {showMonthList && (

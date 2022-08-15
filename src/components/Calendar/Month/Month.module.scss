@@ -53,7 +53,7 @@
 .year-button {
   position: absolute;
   top: 2px;
-  right: 43px;
+  right: 37px;
 
   @extend %button;
 
@@ -72,13 +72,13 @@
   }
 
   .year-button {
-    right: 49px;
+    right: 42px;
   }
 }
 
 @media screen and (min-width: $md) {
   .year-button {
-    right: 53px;
+    right: 46px;
     & + .year-button {
       top: 33px;
     }
@@ -101,7 +101,7 @@
 @media screen and (min-width: $xl) {
   .year-button {
     top: 2px;
-    right: 80px;
+    right: 65px;
 
     & + .year-button {
       top: 48px;
