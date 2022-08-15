@@ -1,0 +1,56 @@
+@use "../../common/style/_breakpoints" as *;
+
+:root {
+  font-size: 14px;
+}
+
+.calendar-section {
+  padding: 0 2rem;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 224px;
+    max-width: 320px;
+    margin: auto;
+    margin-top: 2rem;
+
+    border: 10px solid #009991;
+  }
+}
+
+@media screen and (min-width: $sm) {
+  :root {
+    font-size: 16px;
+  }
+
+  .calendar-section_container {
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: $md) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: $lg) {
+  :root {
+    font-size: 20px;
+  }
+
+  .calendar-section_container {
+    flex-direction: row;
+
+    max-width: 1200px;
+  }
+}
+
+@media screen and (min-width: $xl) {
+  :root {
+    font-size: 26px;
+  }
+}
