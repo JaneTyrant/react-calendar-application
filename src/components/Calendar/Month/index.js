@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { add, format, sub } from "date-fns";
+import { format } from "date-fns";
 import cx from "classnames";
 import styles from "./Month.module.scss";
 import MonthList from "../MonthList";
